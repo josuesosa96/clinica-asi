@@ -13,8 +13,12 @@
 
 Route::get('/', function () {
     return view('auth/login');
-});
+})->middleware('guest');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/add-roles/{user}', 'HomeController@addPermissions')->name('addRole');
+Route::get('/get-roles/{user}', 'HomeController@getUserRoles')->name('getRoles');
