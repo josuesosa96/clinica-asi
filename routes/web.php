@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/create-file', 'HomeController@create')->name('createFile');
 
 
 Route::get('/add-roles/{user}', 'HomeController@addPermissions')->name('addRole');

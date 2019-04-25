@@ -28,6 +28,11 @@ class UsersSeeder extends Seeder
         'password' => bcrypt('medGen1')
       ]);
       DB::table('users')->insert([
+        'name' => 'Medico Especialista1',
+        'user_name' => 'medEsp1',
+        'password' => bcrypt('medEsp1')
+      ]);
+      DB::table('users')->insert([
         'name' => 'Encargado Laboratorio1',
         'user_name' => 'encLab1',
         'password' => bcrypt('encLab1')

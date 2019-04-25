@@ -16,13 +16,13 @@ class CreateFilesTable extends Migration
         Schema::create('files', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 255);
-            $table->integer('number');
+            $table->increments('number')->unique();
             $table->smallInteger('age');
             $table->string('address', 255);
             $table->string('phone_number', 60)->nullable();
             $table->text('allergies')->nullable();
             $table->text('done_tests')->nullable();
-            $table->dateTime('appoinment_date');
+            $table->dateTime('appointment_date');
             $table->text('symptoms');
             $table->text('diagnosis')->nullable();
             $table->text('todo_tests')->nullable();
