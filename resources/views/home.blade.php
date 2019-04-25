@@ -57,7 +57,7 @@
         <div class="row collapse" id="collapsable-search" style="margin-top: 20px;">
           <div class="col-md-12">
             <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Buscar paciente">
+              <input type="text" class="form-control">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
               </div>
@@ -69,29 +69,70 @@
           <div class="col">
             <div class="row">
               <div class="col-md-6">
-                <!--nombre-->
-                <div class="form-group">
-                  <input type="text" name="name" placeholder="Nombre Completo" class="form-control">
+                <div class="row">
+                  <div class="col">
+                    <!--nombre-->
+                    <div class="form-group">
+                      <label for="name">Nombre Completo</label>
+                      <input type="text" name="name" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <!--edad-->
+                    <div class="form-group">
+                      <label for="age">Edad</label>
+                      <input type="number" name="age" min="1" max="100" class="form-control">
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="col-md-6">
-                <!--edad-->
+                <!--direcion-->
                 <div class="form-group">
-                  <input type="number" name="age" placeholder="Edad" min="1" max="100" class="form-control">
+                  <label for="address">Dirección</label>
+                  <input type="text" name="address" class="form-control">
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                <!--direcion-->
+                <!--numero telefono-->
                 <div class="form-group">
-                  <input type="text" name="address" placeholder="Dirección" class="form-control">
+                  <label for="phone_number">Número de Teléfono</label>
+                  <input type="text" name="phone_number" class="form-control">
                 </div>
               </div>
               <div class="col-md-6">
-                <!--numero telefono-->
+                <!--fecha-->
                 <div class="form-group">
-                  <input type="text" name="phone_number" placeholder="Número de teléfono" class="form-control">
+                  <label for="appointment_date">Fecha de cita</label>
+                  <input type="date" name="appointment_date" class="form-control" value="cita">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <!--doc gen-->
+                <div class="form-group">
+                  <label for="doctor">Doctor General</label>
+                  <select class="custom-select" name="doctor">
+                    <option selected disabled>Seleccione un doctor</option>
+                    <option value="1">Doctor General1</option>
+                    <option value="2">Doctor General2</option>
+                    <option value="3">Doctor General3</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <!--doc esp-->
+                <div class="form-group">
+                  <label for="doctor">Doctor Especialista</label>
+                  <select class="custom-select" name="doctor">
+                    <option selected disabled>Seleccione un doctor</option>
+                    <option value="1">Doctor Espcialista1</option>
+                    <option value="2">Doctor Espcialista2</option>
+                    <option value="3">Doctor Espcialista3</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -99,18 +140,20 @@
               <div class="col-md-6">
                 <!--alergias-->
                 <div class="form-group">
-                  <textarea class="form-control" name="allergies" placeholder="Alergias" rows="2"></textarea>
+                  <label for="allergies">Alergias</label>
+                  <textarea class="form-control" name="allergies" rows="2"></textarea>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <select class="custom-select">
-                    <option selected>Doctor General</option>
-                    <option value="1">Doctor General1</option>
-                    <option value="2">Doctor General2</option>
-                    <option value="3">Doctor General3</option>
-                  </select>
+                  <label for="symptoms">Sintomas</label>
+                  <textarea class="form-control" name="symptoms" rows="2"></textarea>
                 </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col text-center">
+                <button type="submit" class="btn btn-primary">Guardar expediente</button>
               </div>
             </div>
           </div>

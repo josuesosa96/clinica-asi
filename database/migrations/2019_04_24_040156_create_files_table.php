@@ -24,7 +24,7 @@ class CreateFilesTable extends Migration
             $table->text('done_tests')->nullable();
             $table->dateTime('appoinment_date');
             $table->text('symptoms');
-            $table->text('diagnosis');
+            $table->text('diagnosis')->nullable();
             $table->text('todo_tests')->nullable();
             $table->text('results')->nullable();
             $table->text('treatment');

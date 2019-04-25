@@ -32,7 +32,7 @@ class HomeController extends Controller
     public function addPermissions($userId)
     {
       $user = User::findOrFail($userId);
-      $user->assignRole('writer');
+      $user->assignRole('super-admin');
     }
 
     public function getUserRoles($userId)
