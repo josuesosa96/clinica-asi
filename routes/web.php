@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/create-file', 'HomeController@create')->name('createFile');
+Route::post('/get-file', 'HomeController@editFile')->name('editFile');
 
 
 Route::get('/add-roles/{user}', 'HomeController@addPermissions')->name('addRole');

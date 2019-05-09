@@ -26,6 +26,15 @@ class HomeController extends Controller
       return $maxNumber = DB::table('files')->max('number') + 1;
     }
 
+    public function editFile(Request $request)
+    {
+      // var_dump($request['file-number']);
+
+      $File = File::where('number', $request['file-number'])->get();
+      var_dump($File->toArray());
+
+    }
+
     /**
      * Show the application dashboard.
      *
@@ -38,23 +47,27 @@ class HomeController extends Controller
 
     public function create(Request $request)
     {
-      // var_dump($request);die();
+      $input = $request->json()->all();
+
       $file = new File;
 
       $file->number = $this->getMaxNumber();
-      $file->name = $request->name;
-      $file->age = $request->age;
-      $file->address = $request->address;
-      $file->phone_number = $request->phone_number;
-      $file->appointment_date = $request->appointment_date;
-      $file->general_doctor_id = $request->general_doctor_id;
-      $file->specialist_doctor_id = $request->specialist_doctor_id;
-      $file->allergies = $request->allergies;
-      $file->symptoms = $request->symptoms;
+      $file->name = $input['name'];
+      $file->age = $input['age'];
+      $file->address = $input['address'];
+      $file->phone_number = $input['phone_number'];
+      $file->appointment_date = $input['appointment_date'];
+      $file->general_doctor_id = $input['general_doctor_id'];
+      $file->specialist_doctor_id = $input['specialist_doctor_id'] == '' ? null : $input['specialist_doctor_id'];
+      $file->allergies = $input['allergies'];
+      $file->symptoms = $input['symptoms'];
 
       $file->save();
 
-      return redirect()->route('home');
+      $test = DB::table('files')->orderBy('number', 'desc')->first();
+
+      return json_encode($test->number);
+      // return redirect()->route('home')->with(['number' => $file->number]);
     }
 
     public function addPermissions($userId)
