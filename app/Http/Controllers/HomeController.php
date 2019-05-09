@@ -8,6 +8,7 @@ use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\File;
+use Validator;
 
 class HomeController extends Controller
 {
@@ -47,7 +48,16 @@ class HomeController extends Controller
 
     public function create(Request $request)
     {
+      $messages = [
+        'name.required' => 'El campo "nombre" es obligatorio',
+        'age.required' => 'El campo "edad" es obligatorio',
+        'general_doctor_id.required' => 'El campo "doctor general" es obligatorio',
+        'symptoms.required' => 'El campo "sintomas" es obligatorio'
+      ];
+
       $input = $request->json()->all();
+
+      $validated = Validator::make($input, ['name' => 'required', 'age' => 'required', 'general_doctor_id' => 'required', 'symptoms' => 'required'], $messages)->validate();
 
       $file = new File;
 
