@@ -60,16 +60,14 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                  @role ('super-admin')
+                                  <a class="dropdown-item" href="{{ route('register') }}">{{ __('Registrar nuevo usuario') }}</a>
+                                  @endrole
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Cerrar sesión') }}
                                     </a>
-                                    @role ('super-admin')
-                                      {{-- <li class="nav-item"> --}}
-                                        <a class="dropdown-item" href="{{ route('register') }}">{{ __('Registrar nuevo usuario') }}</a>
-                                      {{-- </li> --}}
-                                    @endrole
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf

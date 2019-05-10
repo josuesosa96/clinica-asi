@@ -7,7 +7,6 @@
     $form.find(':input').not(':button, :submit, :reset, :hidden, :checkbox, :radio').val('');
   }
 
-
   $(document).ready(function()
   {
     $('#close-success').on('click', function(e)
@@ -99,31 +98,12 @@
   });
 </script>
 @endsection
-
 @section('content')
-{{-- <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
   <div class="container">
     <div class="row justify-content-center">
       <div class="col"></div>
       <div class="col-8">
+        
         <div class="alert alert-primary alert-dismissible fade show" id="success-message" style="display:none;" role="alert">
           El expediente se creo con exito!
           <button type="button" id="close-success" class="close" aria-label="Close">
@@ -138,11 +118,8 @@
           </button>
         </div>
 
-
         <div class="row">
-
           <h1>Nuevo Paciente</h1>
-
           <!--Formulario-->
           {!! Form::open(['id' => 'file-form']) !!}
           <fieldset id="file-form-fieldset">
@@ -232,7 +209,6 @@
           </fieldset>
           {!! Form::close() !!}
         </div>
-
         {{-- <div class="row">
           <div class="col"></div>
           <div class="col-md-8">
@@ -252,8 +228,6 @@
           </div>
           <div class="col"></div>
         </div> --}}
-
-
       </div>
       <div class="col"></div>
     </div>

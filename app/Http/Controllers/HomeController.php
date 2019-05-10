@@ -29,11 +29,8 @@ class HomeController extends Controller
 
     public function editFile(Request $request)
     {
-      // var_dump($request['file-number']);
-
       $File = File::where('number', $request['file-number'])->get();
       var_dump($File->toArray());
-
     }
 
     /**
@@ -77,7 +74,6 @@ class HomeController extends Controller
       $test = DB::table('files')->orderBy('number', 'desc')->first();
 
       return json_encode($test->number);
-      // return redirect()->route('home')->with(['number' => $file->number]);
     }
 
     public function addPermissions($userId)
