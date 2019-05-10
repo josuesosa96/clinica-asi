@@ -22,7 +22,7 @@ class CreateFilesTable extends Migration
             $table->string('phone_number', 60)->nullable();
             $table->text('allergies')->nullable();
             $table->text('done_tests')->nullable();
-            $table->dateTime('appointment_date');
+            $table->dateTime('appointment_date')->nullable();
             $table->text('symptoms');
             $table->text('diagnosis')->nullable();
             $table->text('todo_tests')->nullable();

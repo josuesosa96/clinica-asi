@@ -27,7 +27,7 @@ class HomeController extends Controller
       return $maxNumber = DB::table('files')->max('number') + 1;
     }
 
-    public function editFile(Request $request)
+    public function getFile(Request $request)
     {
       $File = File::where('number', $request['file-number'])->get();
       var_dump($File->toArray());
@@ -63,7 +63,6 @@ class HomeController extends Controller
       $file->age = $input['age'];
       $file->address = $input['address'];
       $file->phone_number = $input['phone_number'];
-      $file->appointment_date = $input['appointment_date'];
       $file->general_doctor_id = $input['general_doctor_id'];
       $file->specialist_doctor_id = $input['specialist_doctor_id'] == '' ? null : $input['specialist_doctor_id'];
       $file->allergies = $input['allergies'];

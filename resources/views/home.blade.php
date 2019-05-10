@@ -49,7 +49,7 @@
               'age': $('#age').val(),
               'address': $('#address').val(),
               'phone_number': $('#phone-number').val(),
-              'appointment_date': $('#appointment-date').val(),
+              // 'appointment_date': $('#appointment-date').val(),
               'general_doctor_id': $('#general-doctor-id').val(),
               'specialist_doctor_id': $('#specialist-doctor-id').val(),
               'allergies': $('#allergies').val(),
@@ -103,7 +103,7 @@
     <div class="row justify-content-center">
       <div class="col"></div>
       <div class="col-8">
-        
+
         <div class="alert alert-primary alert-dismissible fade show" id="success-message" style="display:none;" role="alert">
           El expediente se creo con exito!
           <button type="button" id="close-success" class="close" aria-label="Close">
@@ -145,26 +145,19 @@
                     </div>
                   </div>
                   <div class="col-md-6">
-                    <!--direcion-->
-                    <div class="form-group">
-                      <label for="address">Dirección</label>
-                      <input type="text" name="address" id="address" class="form-control">
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
                     <!--numero telefono-->
                     <div class="form-group">
                       <label for="phone_number">Número de Teléfono</label>
                       <input type="text" name="phone_number" id="phone-number" class="form-control">
                     </div>
                   </div>
-                  <div class="col-md-6">
-                    <!--fecha-->
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <!--direcion-->
                     <div class="form-group">
-                      <label for="appointment_date">Fecha de cita</label>
-                      <input type="date" name="appointment_date" id="appointment-date" class="form-control">
+                      <label for="address">Dirección</label>
+                      <input type="text" name="address" id="address" class="form-control">
                     </div>
                   </div>
                 </div>
@@ -204,10 +197,17 @@
                     <button type="button" id="save-file" class="btn btn-primary">Guardar expediente</button>
                   </div>
                 </div>
+                <br>
+                <div class="row">
+                  <div class="col text-center">
+                    {{ link_to('/edit-file', $title = 'Editar expediente', $attributes = ['class' => 'btn btn-success', 'role' => 'button'])}}
+                  </div>
+                </div>
               </div>
             </div>
           </fieldset>
           {!! Form::close() !!}
+
         </div>
         {{-- <div class="row">
           <div class="col"></div>
