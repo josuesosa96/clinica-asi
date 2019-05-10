@@ -21,22 +21,6 @@
       $('.file-message').remove();
     });
 
-    $('#collapsable-form').on('shown.bs.collapse', function()
-    {
-      if ($('#collapsable-search:visible'))
-      {
-        $('#collapsable-search').collapse('hide');
-      }
-    });
-
-    $('#collapsable-search').on('shown.bs.collapse', function()
-    {
-      if ($('#collapsable-form:visible'))
-      {
-        $('#collapsable-form').collapse('hide');
-      }
-    });
-
     $('#save-file').click(function()
     {
       $.ajax(
@@ -49,7 +33,6 @@
               'age': $('#age').val(),
               'address': $('#address').val(),
               'phone_number': $('#phone-number').val(),
-              // 'appointment_date': $('#appointment-date').val(),
               'general_doctor_id': $('#general-doctor-id').val(),
               'specialist_doctor_id': $('#specialist-doctor-id').val(),
               'allergies': $('#allergies').val(),
@@ -123,7 +106,7 @@
           <!--Formulario-->
           {!! Form::open(['id' => 'file-form']) !!}
           <fieldset id="file-form-fieldset">
-            <div class="row" id="collapsable-form" style="margin-top: 20px;">
+            <div class="row" id="form" style="margin-top: 20px;">
               <div class="col">
                 <div class="row">
                   <div class="col-md-6">

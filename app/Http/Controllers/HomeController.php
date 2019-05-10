@@ -29,8 +29,11 @@ class HomeController extends Controller
 
     public function getFile(Request $request)
     {
-      $File = File::where('number', $request['file-number'])->get();
-      var_dump($File->toArray());
+      $input = $request->json()->all();
+
+      $File = File::where('number', $input['number'])->get();
+
+      return $File;
     }
 
     /**
