@@ -36,14 +36,20 @@
           url: '/get-file',
           success:function(json)
           {
-            console.log(json);
-            console.log(json[0].name);
             $('#name').val(json[0].name);
+            $('#age').val(json[0].age);
+            $('#phone-number').val(json[0].phone_number == null ? '' : json[0].phone_number);
+            $('#address').val(json[0].address == null ? '' : json[0].address);
+            $('#general-doctor-id').val(json[0].general_doctor_id);
+            $('#specialist-doctor-id').val(json[0].specialist_doctor_id == null ? '' : json[0].specialist_doctor_id);
+            $('#allergies').val(json[0].allergies == null ? '' : json[0].allergies);
+            $('#symptoms').val(json[0].symptoms == null ? '' : json[0].symptoms);
+            $('#file-id').val(json[0].id);
           }
         });
     });
 
-    $('#save-file').click(function()
+    $('#update-file').click(function()
     {
       $.ajax(
         {
@@ -51,6 +57,7 @@
           data: JSON.stringify(
             {
               '_token': "{{ csrf_token() }}",
+              'id': $('#file-id').val(),
               'name': $('#name').val(),
               'age': $('#age').val(),
               'address': $('#address').val(),
@@ -63,10 +70,10 @@
             }
           ),
           ContentType: 'application/json',
-          url: '/create-file',
+          url: '/update-file',
           success:function(json)
           {
-            var text = document.createTextNode('El número de expediente es: #' + json);
+            var text = document.createTextNode('Se actualizó el expediente #' + json + ' satisfactoriamente');
             var pElement = document.createElement('p');
             var id = document.createAttribute('class');
             id.value = 'file-message';
@@ -109,7 +116,6 @@
       <div class="col"></div>
       <div class="col-8">
         <div class="alert alert-primary alert-dismissible fade show" id="success-message" style="display:none;" role="alert">
-          El expediente se creo con exito!
           <button type="button" id="close-success" class="close" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -154,6 +160,7 @@
                           <div class="form-group">
                             <label for="name">Nombre Completo</label>
                             <input type="text" name="name" id="name" class="form-control">
+                            {{ Form::hidden('id', null, ['id' => 'file-id'])}}
                           </div>
                         </div>
                         <div class="col">
@@ -215,13 +222,13 @@
                   </div>
                   <div class="row">
                     <div class="col text-center">
-                      <button type="button" id="save-file" class="btn btn-primary">Guardar expediente</button>
+                      <button type="button" id="update-file" class="btn btn-primary">Actualizar expediente</button>
                     </div>
                   </div>
                   <br>
                   <div class="row">
                     <div class="col text-center">
-                      {{ link_to('/edit', $title = 'Editar expediente', $attributes = ['class' => 'btn btn-success', 'role' => 'button'])}}
+                      {{ link_to('/home', $title = 'Regresar', $attributes = ['class' => 'btn btn-success', 'role' => 'button'])}}
                     </div>
                   </div>
                 </div>
