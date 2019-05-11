@@ -27,7 +27,7 @@ class CreateFilesTable extends Migration
             $table->text('diagnosis')->nullable();
             $table->text('todo_tests')->nullable();
             $table->text('results')->nullable();
-            $table->text('treatment');
+            $table->text('treatment')->nullable();
 
             //foreing keys
             $table->unsignedInteger('general_doctor_id');
