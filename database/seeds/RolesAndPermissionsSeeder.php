@@ -17,7 +17,6 @@ class RolesAndPermissionsSeeder extends Seeder
 
       // create permissions
       Permission::create(['name' => 'register users']);
-      Permission::create(['name' => 'register users']);
       Permission::create(['name' => 'view files']);
       Permission::create(['name' => 'create files']);
       Permission::create(['name' => 'edit files']);
