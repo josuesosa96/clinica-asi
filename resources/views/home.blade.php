@@ -9,6 +9,9 @@
 
   $(document).ready(function()
   {
+    $('#dui').mask('00000000-0');
+    $('#nit').mask('0000-000000-000-0');
+
     $('#close-success').on('click', function(e)
     {
       $(this).parent().hide();
@@ -27,9 +30,6 @@
       var currentDate = moment();
 
       var age = (currentDate.diff(birthdate, 'years'));
-      console.log(birthdate);
-      console.log(currentDate);
-      console.log(age);
 
       $('#age').val(age);
     });
@@ -176,14 +176,14 @@
                     <!--DUI-->
                     <div class="form-group">
                       <label for="dui">DUI</label>
-                      <input type="text" name="dui" id="dui" class="form-control" placeholder="000000-0">
+                      <input type="text" name="dui" id="dui" class="form-control" placeholder="00000000-0">
                     </div>
                   </div>
                   <div class="col">
                     <!--NIT-->
                     <div class="form-group">
                       <label for="nit">NIT</label>
-                      <input type="text" name="nit" id="nit" class="form-control" placeholder="00-00000000-000">
+                      <input type="text" name="nit" id="nit" class="form-control" placeholder="0000-000000-000-0">
                     </div>
                   </div>
                   <div class="col">
