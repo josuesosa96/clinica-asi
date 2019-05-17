@@ -35,7 +35,6 @@ class CreateFilesTable extends Migration
             $table->unsignedInteger('specialist_doctor_id')->nullable();
             $table->foreign('specialist_doctor_id')->references('id')->on('users');
 
-
             $table->timestamps();
         });
     }

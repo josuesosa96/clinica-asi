@@ -21,6 +21,19 @@
       $('.file-message').remove();
     });
 
+    $('#birthdate').on('focusout', function()
+    {
+      var birthdate = moment($('#birthdate').val(), 'YYYY-MM-DD');
+      var currentDate = moment();
+
+      var age = (currentDate.diff(birthdate, 'years'));
+      console.log(birthdate);
+      console.log(currentDate);
+      console.log(age);
+
+      $('#age').val(age);
+    });
+
     $('#save-file').click(function()
     {
       $.ajax(
@@ -109,25 +122,71 @@
             <div class="row" id="form" style="margin-top: 20px;">
               <div class="col">
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <div class="row">
                       <div class="col">
                         <!--nombre-->
                         <div class="form-group">
-                          <label for="name">Nombre Completo</label>
-                          <input type="text" name="name" id="name" class="form-control">
+                          <label for="names">Nombres</label>
+                          <input type="text" name="names" id="names" class="form-control">
                         </div>
                       </div>
                       <div class="col">
-                        <!--edad-->
+                        <!--apellidos-->
                         <div class="form-group">
-                          <label for="age">Edad</label>
-                          <input type="number" name="age" id="age" min="1" max="100" class="form-control">
+                          <label for="first_lastname">Primer apellido</label>
+                          <input type="text" name="first_lastname" id="first-lastname" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col">
+                        <!--apellidos-->
+                        <div class="form-group">
+                          <label for="second_lastname">Segundo apellido</label>
+                          <input type="text" name="second_lastname" id="second-lastname" class="form-control">
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-6">
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <!--Fecha nacimiento-->
+                    <div class="form-group">
+                      <label for="birthdate">Fecha de nacimiento</label>
+                      {{ Form::date('birthdate', \Carbon\Carbon::now(), ['class' => 'form-control', 'id' => 'birthdate']) }}
+                    </div>
+                  </div>
+                  <div class="col">
+                    <!--edad-->
+                    <div class="form-group">
+                      <label for="age">Edad</label>
+                      <input type="number" name="age" id="age" min="1" max="100" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <!--sexo-->
+                    <div class="form-group">
+                      <label for="sex">Sexo</label>
+                      {{ Form::select('sex', ['m' => 'mujer', 'h' => 'hombre'], null, ['placeholder' => 'sexo', 'class' => 'form-control', 'id' => 'sex']) }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <!--DUI-->
+                    <div class="form-group">
+                      <label for="dui">DUI</label>
+                      <input type="text" name="dui" id="dui" class="form-control" placeholder="000000-0">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <!--NIT-->
+                    <div class="form-group">
+                      <label for="nit">NIT</label>
+                      <input type="text" name="nit" id="nit" class="form-control" placeholder="00-00000000-000">
+                    </div>
+                  </div>
+                  <div class="col">
                     <!--numero telefono-->
                     <div class="form-group">
                       <label for="phone_number">Número de Teléfono</label>
@@ -136,7 +195,23 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-12">
+                  <div class="col">
+                    <!--nombre responsable-->
+                    <div class="form-group">
+                      <label for="responsible_name">Nombre del responsable</label>
+                      <input type="text" name="responsible_name" id="responsible-name" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <!--numero responsable-->
+                    <div class="form-group">
+                      <label for="responsible_number">Número del responsable</label>
+                      <input type="text" name="responsible_number" id="responsible-number" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
                     <!--direcion-->
                     <div class="form-group">
                       <label for="address">Dirección</label>
