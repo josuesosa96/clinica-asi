@@ -12,10 +12,29 @@ class ModelHasRolesSeeder extends Seeder
      */
     public function run()
     {
+      //admin
+      DB::table('model_has_roles')->insert([
+        'role_id' => 4,
+        'model_type' => 'App\User',
+        'model_id' => 1
+      ]);
+      //doctor1
+      DB::table('model_has_roles')->insert([
+        'role_id' => 2,
+        'model_type' => 'App\User',
+        'model_id' => 3
+      ]);
+      //doctor especialista1
       DB::table('model_has_roles')->insert([
         'role_id' => 3,
         'model_type' => 'App\User',
-        'model_id' => 1
+        'model_id' => 4
+      ]);
+      //secretaria
+      DB::table('model_has_roles')->insert([
+        'role_id' => 1,
+        'model_type' => 'App\User',
+        'model_id' => 2
       ]);
     }
 }

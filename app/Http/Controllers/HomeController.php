@@ -49,27 +49,41 @@ class HomeController extends Controller
     public function create(Request $request)
     {
       $messages = [
-        'name.required' => 'El campo "nombre" es obligatorio',
-        'age.required' => 'El campo "edad" es obligatorio',
-        'general_doctor_id.required' => 'El campo "doctor general" es obligatorio',
+        'names.required' => 'El campo "Nombres" es obligatorio',
+        'first_lastname.required' => 'El campo "Primer apellido" es obligatorio',
+        'second_lastname.required' => 'El campo "Segundo apellido" es obligatorio',
+        'birthdate.required' => 'El campo "Primer apellido" es obligatorio',
+        'age.required' => 'El campo "Edad" es obligatorio',
+        'sex.required' => 'El campo "Sexo" es obligatorio',
+        'address.required' => 'El campo "Dirección" es obligatorio',
+        'general_doctor_id.required' => 'El campo "Doctor general" es obligatorio',
         'symptoms.required' => 'El campo "sintomas" es obligatorio'
       ];
 
       $input = $request->json()->all();
 
-      $validated = Validator::make($input, ['name' => 'required', 'age' => 'required', 'general_doctor_id' => 'required', 'symptoms' => 'required'], $messages)->validate();
+      $validated = Validator::make($input, ['names' => 'required', 'first_lastname' => 'required', 'second_lastname' => 'required', 'birthdate' => 'required', 'age' => 'required', 'sex' => 'required', 'address' => 'required', 'general_doctor_id' => 'required', 'symptoms' => 'required'], $messages)->validate();
 
       $file = new File;
 
       $file->number = $this->getMaxNumber();
-      $file->name = $input['name'];
+      $file->names = $input['names'];
+      $file->first_lastname = $input['first_lastname'];
+      $file->second_lastname = $input['second_lastname'];
+      $file->birthdate = $input['birthdate'];
       $file->age = $input['age'];
-      $file->address = $input['address'];
+      $file->sex = $input['sex'];
+      $file->dui = $input['dui'];
+      $file->nit = $input['nit'];
       $file->phone_number = $input['phone_number'];
+      $file->responsible_name = $input['responsible_name'];
+      $file->responsible_phone_number = $input['responsible_phone_number'];
+      $file->address = $input['address'];
       $file->general_doctor_id = $input['general_doctor_id'];
       $file->specialist_doctor_id = $input['specialist_doctor_id'] == '' ? null : $input['specialist_doctor_id'];
       $file->allergies = $input['allergies'];
       $file->symptoms = $input['symptoms'];
+
 
       $file->save();
 

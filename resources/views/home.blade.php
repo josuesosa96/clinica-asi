@@ -11,6 +11,8 @@
   {
     $('#dui').mask('00000000-0');
     $('#nit').mask('0000-000000-000-0');
+    $('#phone-number').mask('0000-0000');
+    $('#responsible-phone-number').mask('0000-0000');
 
     $('#close-success').on('click', function(e)
     {
@@ -42,10 +44,18 @@
           data: JSON.stringify(
             {
               '_token': "{{ csrf_token() }}",
-              'name': $('#name').val(),
+              'names': $('#names').val(),
+              'first_lastname': $('#first-lastname').val(),
+              'second_lastname': $('#second-lastname').val(),
+              'birthdate': $('#birthdate').val(),
               'age': $('#age').val(),
-              'address': $('#address').val(),
+              'sex': $('#sex').val(),
+              'dui': $('#dui').val(),
+              'nit': $('#nit').val(),
               'phone_number': $('#phone-number').val(),
+              'responsible_name': $('#responsible-name').val(),
+              'responsible_phone_number': $('#responsible-phone-number').val(),
+              'address': $('#address').val(),
               'general_doctor_id': $('#general-doctor-id').val(),
               'specialist_doctor_id': $('#specialist-doctor-id').val(),
               'allergies': $('#allergies').val(),
@@ -153,7 +163,7 @@
                     <!--Fecha nacimiento-->
                     <div class="form-group">
                       <label for="birthdate">Fecha de nacimiento</label>
-                      {{ Form::date('birthdate', \Carbon\Carbon::now(), ['class' => 'form-control', 'id' => 'birthdate']) }}
+                      {{ Form::date('birthdate', null, ['class' => 'form-control', 'id' => 'birthdate']) }}
                     </div>
                   </div>
                   <div class="col">
@@ -190,7 +200,7 @@
                     <!--numero telefono-->
                     <div class="form-group">
                       <label for="phone_number">Número de Teléfono</label>
-                      <input type="text" name="phone_number" id="phone-number" class="form-control">
+                      <input type="text" name="phone_number" id="phone-number" class="form-control" placeholder="0000-0000">
                     </div>
                   </div>
                 </div>
@@ -205,8 +215,8 @@
                   <div class="col">
                     <!--numero responsable-->
                     <div class="form-group">
-                      <label for="responsible_number">Número del responsable</label>
-                      <input type="text" name="responsible_number" id="responsible-number" class="form-control">
+                      <label for="responsible_phone_number">Número del responsable</label>
+                      <input type="text" name="responsible_phone_number" id="responsible-phone-number" class="form-control" placeholder="0000-0000">
                     </div>
                   </div>
                 </div>
@@ -231,7 +241,7 @@
                     <!--doc esp-->
                     <div class="form-group">
                       {!! Form::label('specialist_doctor_id', "Doctor Especialista", ['class' => 'control-label'])!!}
-                      {!! Form::select('specialist_doctor_id', ['10' =>'DoctorEsp1'], null,  ['class' => 'form-control custom-select', 'id' => 'specialist-doctor-id', 'placeholder' => 'Seleccione un doctor especialista'])!!}
+                      {!! Form::select('specialist_doctor_id', ['4' =>'DoctorEsp1'], null,  ['class' => 'form-control custom-select', 'id' => 'specialist-doctor-id', 'placeholder' => 'Seleccione un doctor especialista'])!!}
                     </div>
                   </div>
                 </div>
@@ -254,18 +264,14 @@
                   <div class="col text-center">
                     <button type="button" id="save-file" class="btn btn-primary">Guardar expediente</button>
                   </div>
-                </div>
-                <br>
-                <div class="row">
                   <div class="col text-center">
-                    {{ link_to('/edit-file', $title = 'Editar expediente', $attributes = ['class' => 'btn btn-success', 'role' => 'button'])}}
+                    {{ link_to('/edit-file', $title = 'Buscar expediente', $attributes = ['class' => 'btn btn-success', 'role' => 'button'])}}
                   </div>
                 </div>
               </div>
             </div>
           </fieldset>
           {!! Form::close() !!}
-
         </div>
         {{-- <div class="row">
           <div class="col"></div>

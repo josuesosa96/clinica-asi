@@ -30,6 +30,8 @@ class RolesAndPermissionsSeeder extends Seeder
 
       $role = Role::create(['name' => 'doctor'])->givePermissionTo(['view files', 'create files', 'edit files']);
 
+      $role = Role::create(['name' => 'specialist-doctor'])->givePermissionTo(['view files', 'create files', 'edit files']);
+
       $role = Role::create(['name' => 'super-admin']);
       $role->givePermissionTo(Permission::all());
     }
