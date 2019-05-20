@@ -208,14 +208,14 @@
                   <div class="col">
                     <!--nombre responsable-->
                     <div class="form-group">
-                      <label for="responsible_name">Nombre del responsable</label>
+                      <label for="responsible_name">En caso de emergencia contactar a</label>
                       <input type="text" name="responsible_name" id="responsible-name" class="form-control">
                     </div>
                   </div>
                   <div class="col">
                     <!--numero responsable-->
                     <div class="form-group">
-                      <label for="responsible_phone_number">Número del responsable</label>
+                      <label for="responsible_phone_number">Número en caso de emergencia</label>
                       <input type="text" name="responsible_phone_number" id="responsible-phone-number" class="form-control" placeholder="0000-0000">
                     </div>
                   </div>
@@ -265,7 +265,7 @@
                     <button type="button" id="save-file" class="btn btn-primary">Guardar expediente</button>
                   </div>
                   <div class="col text-center">
-                    {{ link_to('/edit-file', $title = 'Buscar expediente', $attributes = ['class' => 'btn btn-success', 'role' => 'button'])}}
+                    {{ link_to('/edit-file', $title = 'Consultar expediente', $attributes = ['class' => 'btn btn-success', 'role' => 'button'])}}
                   </div>
                 </div>
               </div>

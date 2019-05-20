@@ -57,12 +57,13 @@ class HomeController extends Controller
         'sex.required' => 'El campo "Sexo" es obligatorio',
         'address.required' => 'El campo "Dirección" es obligatorio',
         'general_doctor_id.required' => 'El campo "Doctor general" es obligatorio',
-        'symptoms.required' => 'El campo "sintomas" es obligatorio'
+        'symptoms.required' => 'El campo "sintomas" es obligatorio',
+        'dui.required' => 'El campo "DUI" es obligatorio'
       ];
 
       $input = $request->json()->all();
 
-      $validated = Validator::make($input, ['names' => 'required', 'first_lastname' => 'required', 'second_lastname' => 'required', 'birthdate' => 'required', 'age' => 'required', 'sex' => 'required', 'address' => 'required', 'general_doctor_id' => 'required', 'symptoms' => 'required'], $messages)->validate();
+      $validated = Validator::make($input, ['names' => 'required', 'first_lastname' => 'required', 'second_lastname' => 'required', 'birthdate' => 'required', 'age' => 'required', 'sex' => 'required', 'address' => 'required', 'general_doctor_id' => 'required', 'symptoms' => 'required', 'dui' =>  'required'], $messages)->validate();
 
       $file = new File;
 
