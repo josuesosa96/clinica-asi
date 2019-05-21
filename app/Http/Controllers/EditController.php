@@ -26,10 +26,23 @@ class EditController extends Controller
 
     $input = $request->json()->all();
 
-    $validated = Validator::make($input, ['names' => 'required', 'first_lastname' => 'required', 'second_lastname' => 'required', 'birthdate' => 'required', 'age' => 'required', 'sex' => 'required', 'address' => 'required', 'general_doctor_id' => 'required', 'symptoms' => 'required', 'dui' => 'required'], $messages)->validate();
+    $validated = Validator::make($input,
+      [
+        'names' => 'required',
+        'first_lastname' => 'required',
+        'second_lastname' => 'required',
+        'birthdate' => 'required',
+        'age' => 'required',
+        'sex' => 'required',
+        'address' => 'required',
+        'general_doctor_id' => 'required',
+        'symptoms' => 'required',
+        'dui' => 'required'
+      ],
+      $messages
+    )->validate();
 
     $File = File::find($input['id']);
-    // dd($input);
 
     $File->names = $input['names'];
     $File->first_lastname = $input['first_lastname'];

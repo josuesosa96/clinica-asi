@@ -207,7 +207,7 @@
                           <!--nombre-->
                           <div class="form-group">
                             <label for="names">Nombres</label>
-                            <input type="text" name="names" id="names" class="form-control">
+                            <input type="text" name="names" id="names" class="form-control" onkeydown="return /[a-z]/i.test(event.key)">
                             {{ Form::hidden('id', null, ['id' => 'file-id'])}}
                           </div>
                         </div>
@@ -215,14 +215,14 @@
                           <!--apellidos-->
                           <div class="form-group">
                             <label for="first_lastname">Primer apellido</label>
-                            <input type="text" name="first_lastname" id="first-lastname" class="form-control">
+                            <input type="text" name="first_lastname" id="first-lastname" class="form-control" onkeydown="return /[a-z]/i.test(event.key)">
                           </div>
                         </div>
                         <div class="col">
                           <!--apellidos-->
                           <div class="form-group">
                             <label for="second_lastname">Segundo apellido</label>
-                            <input type="text" name="second_lastname" id="second-lastname" class="form-control">
+                            <input type="text" name="second_lastname" id="second-lastname" class="form-control" onkeydown="return /[a-z]/i.test(event.key)">
                           </div>
                         </div>
                       </div>
@@ -279,7 +279,7 @@
                       <!--nombre responsable-->
                       <div class="form-group">
                         <label for="responsible_name">En caso de emergencia contactar a</label>
-                        <input type="text" name="responsible_name" id="responsible-name" class="form-control">
+                        <input type="text" name="responsible_name" id="responsible-name" class="form-control" onkeydown="return /[a-z]/i.test(event.key)">
                       </div>
                     </div>
                     <div class="col">

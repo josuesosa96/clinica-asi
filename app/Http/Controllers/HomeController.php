@@ -22,9 +22,9 @@ class HomeController extends Controller
       $this->middleware('auth');
     }
 
-    public function getMaxNumber()
+    public function getMaxId()
     {
-      return $maxNumber = DB::table('files')->max('number') + 1;
+      return $maxNumber = DB::table('files')->max('id') + 1;
     }
 
     public function getFile(Request $request)
@@ -63,11 +63,28 @@ class HomeController extends Controller
 
       $input = $request->json()->all();
 
-      $validated = Validator::make($input, ['names' => 'required', 'first_lastname' => 'required', 'second_lastname' => 'required', 'birthdate' => 'required', 'age' => 'required', 'sex' => 'required', 'address' => 'required', 'general_doctor_id' => 'required', 'symptoms' => 'required', 'dui' =>  'required'], $messages)->validate();
+      $validated = Validator::make($input,
+        [
+          'names' => 'required',
+          'first_lastname' => 'required',
+          'second_lastname' => 'required',
+          'birthdate' => 'required',
+          'age' => 'required',
+          'sex' => 'required',
+          'address' => 'required',
+          'general_doctor_id' => 'required',
+          'symptoms' => 'required',
+          'dui' =>  'required'
+        ],
+        $messages
+      )->validate();
 
       $file = new File;
 
-      $file->number = $this->getMaxNumber();
+      $maxId = $this->getMaxId();
+      $number = strtoupper(substr($input['first_lastname'], 0, 1)) . strtoupper(substr($input['second_lastname'], 0, 1)) . \Carbon\Carbon::now()->format('dmy') . $maxId;
+
+      $file->number = $number;
       $file->names = $input['names'];
       $file->first_lastname = $input['first_lastname'];
       $file->second_lastname = $input['second_lastname'];
