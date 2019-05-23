@@ -15,17 +15,17 @@ Route::get('/', function () {
     return view('auth/login');
 })->middleware('guest');
 
-Route::get('/edit-file', function () {
-    return view('edit');
-});
+Route::get('/menu', function () {
+    return view('menu');
+})->middleware('auth');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/create-file', 'HomeController@create')->name('createFile');
+Route::get('/edit-file', 'EditController@index')->name('edit');
 
-Route::post('/update-file', 'EditController@editFile')->name('editFile');
+Route::post('/create-file', 'HomeController@create')->name('createFile');
 
 Route::post('/get-file', 'HomeController@getFile')->name('getFile');
 
