@@ -11,8 +11,9 @@
   {
     $('#dui').mask('00000000-0');
     $('#nit').mask('0000-000000-000-0');
-    $('#phone-number').mask('0000-0000');
-    $('#responsible-phone-number').mask('0000-0000');
+    $('#phone-number').mask('+000-0000-0000');
+    $('#second-phone-number').mask('+000-0000-0000');
+    $('#responsible-phone-number').mask('+000-0000-0000');
 
     $('#close-success').on('click', function(e)
     {
@@ -44,7 +45,8 @@
           data: JSON.stringify(
             {
               '_token': "{{ csrf_token() }}",
-              'names': $('#names').val(),
+              'first_name': $('#first-name').val(),
+              'second_name': $('#second-name').val(),
               'first_lastname': $('#first-lastname').val(),
               'second_lastname': $('#second-lastname').val(),
               'birthdate': $('#birthdate').val(),
@@ -53,13 +55,15 @@
               'dui': $('#dui').val(),
               'nit': $('#nit').val(),
               'phone_number': $('#phone-number').val(),
+              'second_phone_number': $('#second-phone-number').val(),
               'responsible_name': $('#responsible-name').val(),
               'responsible_phone_number': $('#responsible-phone-number').val(),
               'address': $('#address').val(),
+              'city': $('#city').val(),
+              'state': $('#state').val(),
               'general_doctor_id': $('#general-doctor-id').val(),
               'specialist_doctor_id': $('#specialist-doctor-id').val(),
-              'allergies': $('#allergies').val(),
-              'symptoms': $('#symptoms').val(),
+              'allergies': $('#allergies').val()
             }
           ),
           ContentType: 'application/json',
@@ -135,21 +139,28 @@
                   <div class="col-md-12">
                     <div class="row">
                       <div class="col">
-                        <!--nombre-->
+                        <!--nombre1-->
                         <div class="form-group">
-                          <label for="names">Nombres</label>
-                          <input type="text" name="names" id="names" class="form-control" onkeydown="return /[a-z]/i.test(event.key)">
+                          <label for="first_name">Primer nombre</label>
+                          <input type="text" name="first_name" id="first-name" class="form-control" onkeydown="return /[a-z]/i.test(event.key)">
                         </div>
                       </div>
                       <div class="col">
-                        <!--apellidos-->
+                        <!--nombre2-->
+                        <div class="form-group">
+                          <label for="second_name">Segundo nombre</label>
+                          <input type="text" name="second_name" id="second-name" class="form-control" onkeydown="return /[a-z]/i.test(event.key)">
+                        </div>
+                      </div>
+                      <div class="col">
+                        <!--apellido1-->
                         <div class="form-group">
                           <label for="first_lastname">Primer apellido</label>
                           <input type="text" name="first_lastname" id="first-lastname" class="form-control" onkeydown="return /[a-z]/i.test(event.key)">
                         </div>
                       </div>
                       <div class="col">
-                        <!--apellidos-->
+                        <!--apellido2-->
                         <div class="form-group">
                           <label for="second_lastname">Segundo apellido</label>
                           <input type="text" name="second_lastname" id="second-lastname" class="form-control" onkeydown="return /[a-z]/i.test(event.key)">
@@ -176,8 +187,8 @@
                   <div class="col">
                     <!--sexo-->
                     <div class="form-group">
-                      <label for="sex">Sexo</label>
-                      {{ Form::select('sex', ['m' => 'mujer', 'h' => 'hombre'], null, ['placeholder' => 'sexo', 'class' => 'form-control', 'id' => 'sex']) }}
+                      <label for="sex">Género</label>
+                      {{ Form::select('sex', ['m' => 'mujer', 'h' => 'hombre'], null, ['placeholder' => 'Género', 'class' => 'form-control', 'id' => 'sex']) }}
                     </div>
                   </div>
                 </div>
@@ -197,10 +208,17 @@
                     </div>
                   </div>
                   <div class="col">
-                    <!--numero telefono-->
+                    <!--numero telefono1-->
                     <div class="form-group">
-                      <label for="phone_number">Número de Teléfono</label>
-                      <input type="text" name="phone_number" id="phone-number" class="form-control" placeholder="0000-0000">
+                      <label for="phone_number">Número de Teléfono 1</label>
+                      <input type="text" name="phone_number" id="phone-number" class="form-control" placeholder="+000-0000-0000">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <!--numero telefono2-->
+                    <div class="form-group">
+                      <label for="second_phone_number">Número de Teléfono 2</label>
+                      <input type="text" name="second_phone_number" id="second-phone-number" class="form-control" placeholder="+000-0000-0000">
                     </div>
                   </div>
                 </div>
@@ -209,14 +227,14 @@
                     <!--nombre responsable-->
                     <div class="form-group">
                       <label for="responsible_name">En caso de emergencia contactar a</label>
-                      <input type="text" name="responsible_name" id="responsible-name" class="form-control" onkeydown="return /[a-z]/i.test(event.key)">
+                      <input type="text" name="responsible_name" id="responsible-name" class="form-control" onkeydown="return /[a-z, '']/i.test(event.key)">
                     </div>
                   </div>
                   <div class="col">
                     <!--numero responsable-->
                     <div class="form-group">
                       <label for="responsible_phone_number">Número en caso de emergencia</label>
-                      <input type="text" name="responsible_phone_number" id="responsible-phone-number" class="form-control" placeholder="0000-0000">
+                      <input type="text" name="responsible_phone_number" id="responsible-phone-number" class="form-control" placeholder="+000-0000-0000">
                     </div>
                   </div>
                 </div>
@@ -226,6 +244,20 @@
                     <div class="form-group">
                       <label for="address">Dirección</label>
                       <input type="text" name="address" id="address" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <!--Ciudad-->
+                    <div class="form-group">
+                      <label for="city">Ciudad</label>
+                      <input type="text" name="city" id="city" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <!--Departament-->
+                    <div class="form-group">
+                      <label for="state">Departamento</label>
+                      <input type="text" name="state" id="state" class="form-control">
                     </div>
                   </div>
                 </div>
@@ -246,19 +278,19 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col">
                     <!--alergias-->
                     <div class="form-group">
                       <label for="allergies">Alergias</label>
                       <textarea class="form-control" name="allergies" id="allergies" rows="2"></textarea>
                     </div>
                   </div>
-                  <div class="col-md-6">
+                  {{-- <div class="col-md-6">
                     <div class="form-group">
                       <label for="symptoms">Sintomas</label>
                       <textarea class="form-control" name="symptoms" id="symptoms" rows="2"></textarea>
                     </div>
-                  </div>
+                  </div> --}}
                 </div>
                 <div class="row">
                   <div class="col text-center">

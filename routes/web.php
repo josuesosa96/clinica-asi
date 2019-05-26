@@ -21,13 +21,15 @@ Route::get('/menu', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/secretary-home', 'HomeSecretaryController@index')->name('secretaryHome');
+Route::post('/create-file', 'HomeSecretaryController@create')->name('createFile');
+Route::get('/secretary-edit-file', 'SecretaryEditController@index')->name('secretaryEdit');
+Route::post('/secretary-update-file', 'SecretaryEditController@editFile')->name('secretaryUpdateFile');
 
-Route::get('/edit-file', 'EditController@index')->name('edit');
+Route::get('/doctor-edit-file', 'DoctorEditController@index')->name('doctorEdit');
+Route::post('/doctor-update-file', 'DoctorEditController@editFile')->name('doctorUpdateFile');
 
-Route::post('/create-file', 'HomeController@create')->name('createFile');
+Route::post('/get-file', 'HomeSecretaryController@getFile')->name('getFile');
 
-Route::post('/get-file', 'HomeController@getFile')->name('getFile');
-
-Route::get('/add-roles/{user}', 'HomeController@addPermissions')->name('addRole');
-Route::get('/get-roles/{user}', 'HomeController@getUserRoles')->name('getRoles');
+Route::get('/add-roles/{user}', 'HomeSecretaryController@addPermissions')->name('addRole');
+Route::get('/get-roles/{user}', 'HomeSecretaryController@getUserRoles')->name('getRoles');
