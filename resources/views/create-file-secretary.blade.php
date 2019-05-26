@@ -71,7 +71,7 @@
           url: '/create-file',
           success:function(json)
           {
-            var text = document.createTextNode('El número de expediente es: #' + json);
+            var text = document.createTextNode('El número de expediente es: ' + json);
             var pElement = document.createElement('p');
             var id = document.createAttribute('class');
             id.value = 'file-message';
@@ -297,7 +297,7 @@
                     <button type="button" id="save-file" class="btn btn-primary">Guardar expediente</button>
                   </div>
                   <div class="col text-center">
-                    {{ link_to('/edit-file', $title = 'Consultar expediente', $attributes = ['class' => 'btn btn-success', 'role' => 'button'])}}
+                    {{ link_to('/secretary-edit-file', $title = 'Consultar expediente', $attributes = ['class' => 'btn btn-success', 'role' => 'button'])}}
                   </div>
                 </div>
               </div>

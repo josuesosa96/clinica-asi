@@ -237,17 +237,6 @@
               </div>
             </div>
 
-            {{-- <div class="row" >
-              <div class="col-md-12">
-                <div class="input-group mb-3">
-                  <input type="text" name="file-number" id="file-number" class="form-control" placeholder="Buscar expediente por número">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-info" id="search-file-number" type="submit">Buscar</button>
-                  </div>
-                </div>
-              </div>
-            </div> --}}
-
             <!--grid-->
             <div id="grid" class="collapse show">
               <table class="table" id="files-grid" data-page-length='5'>

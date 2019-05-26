@@ -21,10 +21,10 @@ Route::get('/menu', function () {
 
 Auth::routes();
 
-Route::get('/secretary-home', 'HomeSecretaryController@index')->name('secretaryHome');
-Route::post('/create-file', 'HomeSecretaryController@create')->name('createFile');
-Route::get('/secretary-edit-file', 'SecretaryEditController@index')->name('secretaryEdit');
-Route::post('/secretary-update-file', 'SecretaryEditController@editFile')->name('secretaryUpdateFile');
+Route::get('/secretary-home', 'HomeSecretaryController@index')->middleware('role:super-admin|secretary')->name('secretaryHome');
+Route::post('/create-file', 'HomeSecretaryController@create')->middleware('role:super-admin|secretary')->name('createFile');
+Route::get('/secretary-edit-file', 'SecretaryEditController@index')->middleware('role:super-admin|secretary')->name('secretaryEdit');
+Route::post('/secretary-update-file', 'SecretaryEditController@editFile')->middleware('role:super-admin|secretary')->name('secretaryUpdateFile');
 
 Route::get('/doctor-edit-file', 'DoctorEditController@index')->name('doctorEdit');
 Route::post('/doctor-update-file', 'DoctorEditController@editFile')->name('doctorUpdateFile');
