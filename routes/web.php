@@ -29,6 +29,9 @@ Route::post('/secretary-update-file', 'SecretaryEditController@editFile')->middl
 Route::get('/doctor-edit-file', 'DoctorEditController@index')->name('doctorEdit');
 Route::post('/doctor-update-file', 'DoctorEditController@editFile')->name('doctorUpdateFile');
 
+Route::get('/lab-edit-file', 'LabEditController@index')->name('LabEdit');
+Route::post('/lab-update-file', 'LabEditController@editFile')->name('LabUpdateFile');
+
 Route::post('/get-file', 'HomeSecretaryController@getFile')->name('getFile');
 
 Route::get('/add-roles/{user}', 'HomeSecretaryController@addPermissions')->name('addRole');

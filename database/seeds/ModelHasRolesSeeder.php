@@ -14,7 +14,7 @@ class ModelHasRolesSeeder extends Seeder
     {
       //admin
       DB::table('model_has_roles')->insert([
-        'role_id' => 4,
+        'role_id' => 5,
         'model_type' => 'App\User',
         'model_id' => 1
       ]);
@@ -35,6 +35,12 @@ class ModelHasRolesSeeder extends Seeder
         'role_id' => 1,
         'model_type' => 'App\User',
         'model_id' => 2
+      ]);
+      //Encargado Lab
+      DB::table('model_has_roles')->insert([
+        'role_id' => 4,
+        'model_type' => 'App\User',
+        'model_id' => 5
       ]);
     }
 }

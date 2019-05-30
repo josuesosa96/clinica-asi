@@ -20,7 +20,9 @@
               {{ link_to('/doctor-edit-file', $title = 'Consultar expediente', $attributes = ['class' => 'btn btn-info btn-lg btn-block', 'role' => 'button'])}}
               @endhasanyrole
 
-              {{ link_to('#', $title = 'Consultar exámenes de paciente (no disponible)', $attributes = ['class' => 'btn btn-warning btn-lg btn-block', 'role' => 'button'])}}
+              @hasanyrole('super-admin|lab-manager')
+              {{ link_to('/lab-edit-file', $title = 'Consultar exámenes de paciente', $attributes = ['class' => 'btn btn-info btn-lg btn-block', 'role' => 'button'])}}
+              @endhasanyrole
 
               {{ link_to('#', $title = 'Crear cita para exámenes(no disponible)', $attributes = ['class' => 'btn btn-warning btn-lg btn-block', 'role' => 'button'])}}
             </div>

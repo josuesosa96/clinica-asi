@@ -62,6 +62,20 @@
               $('#second-name').val(json[0].second_name);
               $('#first-lastname').val(json[0].first_lastname);
               $('#second-lastname').val(json[0].second_lastname);
+              // $('#birthdate').val(json[0].birthdate);
+              // $('#age').val(json[0].age);
+              // $('#sex').val(json[0].sex);
+              // $('#dui').val(json[0].dui);
+              // $('#nit').val(json[0].nit);
+              // $('#phone-number').val(json[0].phone_number);
+              // $('#second-phone-number').val(json[0].second_phone_number);
+              // $('#responsible-name').val(json[0].responsible_name);
+              // $('#responsible-phone-number').val(json[0].responsible_phone_number);
+              // $('#address').val(json[0].address);
+              // $('#city').val(json[0].city);
+              // $('#state').val(json[0].state);
+              // $('#general-doctor-id').val(json[0].general_doctor_id);
+              // $('#specialist-doctor-id').val(json[0].specialist_doctor_id);
               $('#allergies').val(json[0].allergies);
               $('#symptoms').val(json[0].symptoms);
               $('#diagnosis').val(json[0].diagnosis);
@@ -146,17 +160,15 @@
               {
                 '_token': "{{ csrf_token() }}",
                 'id': $('#file-id').val(),
-                'symptoms': $('#symptoms').val(),
-                'diagnosis': $('#diagnosis').val(),
-                'treatment': $('#treatment').val(),
-                'todo_tests': $('#todo-tests').val(),
+                'done_tests': $('#done-tests').val(),
+                'results': $('#results').val(),
               }
             ),
             ContentType: 'application/json',
-            url: '/doctor-update-file',
+            url: '/lab-update-file',
             success:function(json)
             {
-              var text = document.createTextNode('Se actualizó el expediente ' + json + ' satisfactoriamente');
+              var text = document.createTextNode('Se guardaron los exámnes del paciente ' + json + ' satisfactoriamente');
               var pElement = document.createElement('p');
               var id = document.createAttribute('class');
               id.value = 'file-message';
@@ -289,43 +301,20 @@
                         <textarea class="form-control" name="allergies" id="allergies" rows="2" disabled></textarea>
                       </div>
                     </div>
-                    <div class="col">
-                      <!--sintomas-->
-                      <div class="form-group">
-                        <label for="symptoms">Sintomas</label>
-                        <textarea class="form-control" name="symptoms" id="symptoms" rows="2"></textarea>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col">
-                      <!--diagnostico-->
-                      <div class="form-group">
-                        <label for="diagnosis">Diagnostico</label>
-                        <textarea class="form-control" name="diagnosis" id="diagnosis" rows="2"></textarea>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <!--tratamiento-->
-                      <div class="form-group">
-                        <label for="treatment">Tratamiento</label>
-                        <textarea class="form-control" name="treatment" id="treatment" rows="2"></textarea>
-                      </div>
-                    </div>
                   </div>
                   <div class="row">
                     <div class="col">
                       <!--examenes por hacer-->
                       <div class="form-group">
                         <label for="todo_tests">Exámenes por realizar</label>
-                        <textarea class="form-control" name="todo_tests" id="todo-tests" rows="2"></textarea>
+                        <textarea class="form-control" name="todo_tests" id="todo-tests" rows="2" disabled></textarea>
                       </div>
                     </div>
                     <div class="col">
                       <!--examenes realizados-->
                       <div class="form-group">
                         <label for="done_tests">Exámenes realizados</label>
-                        <textarea class="form-control" name="done_tests" id="done-tests" rows="2" disabled></textarea>
+                        <textarea class="form-control" name="done_tests" id="done-tests" rows="2"></textarea>
                       </div>
                     </div>
                   </div>
@@ -334,13 +323,13 @@
                       <!--resultados-->
                       <div class="form-group">
                         <label for="results">Resultados de los exámenes</label>
-                        <textarea class="form-control" name="results" id="results" rows="2" disabled></textarea>
+                        <textarea class="form-control" name="results" id="results" rows="2"></textarea>
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col text-center">
-                      <button type="button" id="update-file" class="btn btn-primary">Actualizar expediente</button>
+                      <button type="button" id="update-file" class="btn btn-primary">Guardar exámenes</button>
                     </div>
                     <div class="col text-center">
                       {{ link_to('/menu', $title = 'Regresar', $attributes = ['class' => 'btn btn-success', 'role' => 'button'])}}
