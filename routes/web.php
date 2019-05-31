@@ -31,6 +31,7 @@ Route::post('/doctor-update-file', 'DoctorEditController@editFile')->name('docto
 
 Route::get('/lab-edit-file', 'LabEditController@index')->name('LabEdit');
 Route::post('/lab-update-file', 'LabEditController@editFile')->name('LabUpdateFile');
+Route::post('/get-lab-file', 'LabEditController@getFile')->name('getLabFile');
 
 Route::post('/get-file', 'HomeSecretaryController@getFile')->name('getFile');
 

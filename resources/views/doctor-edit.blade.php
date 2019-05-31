@@ -58,6 +58,7 @@
             url: '/get-file',
             success:function(json)
             {
+              console.log(json);
               $('#first-name').val(json[0].first_name);
               $('#second-name').val(json[0].second_name);
               $('#first-lastname').val(json[0].first_lastname);
@@ -67,9 +68,33 @@
               $('#diagnosis').val(json[0].diagnosis);
               $('#treatment').val(json[0].treatment);
               $('#done-tests').val(json[0].done_tests);
-              $('#todo-tests').val(json[0].todo_tests);
               $('#results').val(json[0].results);
               $('#file-id').val(json[0].id);
+
+              json[0].tests.forEach(function(element)
+              {
+                console.log(element);
+                if (element.name == 'Hemograma completo')
+                {
+                  $('#hemogram-test').prop('checked', true);
+                }
+                if (element.name == 'Urinálisis completo')
+                {
+                  $('#uri-test').prop('checked', true);
+                }
+                if (element.name == 'Perfil lipídico')
+                {
+                  $('#lipid-test').prop('checked', true);
+                }
+                if (element.name == 'Exámen de heces')
+                {
+                  $('#feces-test').prop('checked', true);
+                }
+                if (element.name == 'Perfil hepático')
+                {
+                  $('#hepatic-test').prop('checked', true);
+                }
+              });
 
               $('#grid').collapse('hide');
             }
@@ -90,38 +115,6 @@
       $('.file-message').remove();
     });
 
-    $('#search-file-number').click(function()
-    {
-      $.ajax(
-        {
-          type: 'POST',
-          data: JSON.stringify(
-            {
-              '_token': "{{ csrf_token() }}",
-              'number': $('#file-number').val(),
-            }
-          ),
-          ContentType: 'application/json',
-          url: '/get-file',
-          success:function(json)
-          {
-            console.log(json);
-            $('#first-name').val(json[0].first_name);
-            $('#second-name').val(json[0].second_name);
-            $('#first-lastname').val(json[0].first_lastname);
-            $('#second-lastname').val(json[0].second_lastname);
-            $('#allergies').val(json[0].allergies);
-            $('#symptoms').val(json[0].symptoms);
-            $('#diagnosis').val(json[0].diagnosis);
-            $('#treatment').val(json[0].treatment);
-            $('#todo-tests').val(json[0].todo_tests);
-            $('#done-tests').val(json[0].done_tests);
-            $('#results').val(json[0].results);
-            $('#file-id').val(json[0].id);
-          }
-        });
-    });
-
     $('#update-file').click(function()
     {
       if ($('#file-id').val() == '')
@@ -139,6 +132,12 @@
       }
       else
       {
+        todoTests = [];
+        $.each($("input[name='test']:checked"), function()
+        {
+          todoTests.push($(this).val());
+        });
+
         $.ajax(
           {
             type: 'POST',
@@ -149,7 +148,7 @@
                 'symptoms': $('#symptoms').val(),
                 'diagnosis': $('#diagnosis').val(),
                 'treatment': $('#treatment').val(),
-                'todo_tests': $('#todo-tests').val(),
+                'todo_tests': todoTests,
               }
             ),
             ContentType: 'application/json',
@@ -317,9 +316,40 @@
                     <div class="col">
                       <!--examenes por hacer-->
                       <div class="form-group">
+                        <div class="row">
+                          <div class="col">
+                            <label for="todo_tests">Exámenes por realizar</label>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="1" name="test" id="hemogram-test">
+                              <label class="form-check-label" for="test">Hemograma completo</label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="2" name="test" id="uri-test">
+                              <label class="form-check-label" for="test">Urinálisis completo</label>
+                            </div>
+                          </div>
+                          <div class="col">
+                            {{-- <label for="todo_tests"></label> --}}
+                            <br>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="3" name="test" id="lipid-test">
+                              <label class="form-check-label" for="test">Perfil lipídico</label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="4" name="test" id="feces-test">
+                              <label class="form-check-label" for="test">Exámen de heces</label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="5" name="test" id="hepatic-test">
+                              <label class="form-check-label" for="test">Perfil hepático</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {{-- <div class="form-group">
                         <label for="todo_tests">Exámenes por realizar</label>
                         <textarea class="form-control" name="todo_tests" id="todo-tests" rows="2"></textarea>
-                      </div>
+                      </div> --}}
                     </div>
                     <div class="col">
                       <!--examenes realizados-->

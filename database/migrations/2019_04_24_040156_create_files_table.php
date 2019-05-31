@@ -33,12 +33,12 @@ class CreateFilesTable extends Migration
             $table->string('phone_number', 14);
             $table->string('second_phone_number', 14)->nullable();
             $table->text('allergies')->nullable();
-            $table->text('done_tests')->nullable();
+            // $table->text('done_tests')->nullable();
             $table->date('appointment_date')->nullable();
             $table->text('symptoms')->nullable();
             $table->text('diagnosis')->nullable();
-            $table->text('todo_tests')->nullable();
-            $table->text('results')->nullable();
+            // $table->text('todo_tests')->nullable();
+            // $table->text('results')->nullable();
             $table->text('treatment')->nullable();
 
             //foreing keys

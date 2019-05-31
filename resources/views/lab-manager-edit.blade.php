@@ -55,33 +55,17 @@
               }
             ),
             ContentType: 'application/json',
-            url: '/get-file',
+            url: '/get-lab-file',
             success:function(json)
             {
+              console.log(json);
               $('#first-name').val(json[0].first_name);
               $('#second-name').val(json[0].second_name);
               $('#first-lastname').val(json[0].first_lastname);
               $('#second-lastname').val(json[0].second_lastname);
-              // $('#birthdate').val(json[0].birthdate);
-              // $('#age').val(json[0].age);
-              // $('#sex').val(json[0].sex);
-              // $('#dui').val(json[0].dui);
-              // $('#nit').val(json[0].nit);
-              // $('#phone-number').val(json[0].phone_number);
-              // $('#second-phone-number').val(json[0].second_phone_number);
-              // $('#responsible-name').val(json[0].responsible_name);
-              // $('#responsible-phone-number').val(json[0].responsible_phone_number);
-              // $('#address').val(json[0].address);
-              // $('#city').val(json[0].city);
-              // $('#state').val(json[0].state);
-              // $('#general-doctor-id').val(json[0].general_doctor_id);
-              // $('#specialist-doctor-id').val(json[0].specialist_doctor_id);
               $('#allergies').val(json[0].allergies);
-              $('#symptoms').val(json[0].symptoms);
-              $('#diagnosis').val(json[0].diagnosis);
-              $('#treatment').val(json[0].treatment);
-              $('#done-tests').val(json[0].done_tests);
               $('#todo-tests').val(json[0].todo_tests);
+              $('#done-tests').val(json[0].done_tests);
               $('#results').val(json[0].results);
               $('#file-id').val(json[0].id);
 

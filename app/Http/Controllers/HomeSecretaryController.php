@@ -27,13 +27,86 @@ class HomeSecretaryController extends Controller
       return $maxNumber = DB::table('files')->max('id') + 1;
     }
 
+    public function getTodoTestsByFileId($fileId)
+    {
+      $TodoTests = DB::table('todo_tests AS tt')->leftJoin('tests AS t', 't.id', '=', 'tt.test_id')->where('tt.file_id', '=', $fileId)->where('tt.is_done', '=', 0)->get();
+      return $TodoTests;
+    }
+
+    public function getDoneTestsByFileId($fileId)
+    {
+      $DoneTests = DB::table('done_tests AS dt')->leftJoin('tests AS t', 't.id', '=', 'dt.test_id')->where('dt.file_id', '=', $fileId)->get();
+      return $DoneTests;
+    }
+
     public function getFile(Request $request)
     {
       $input = $request->json()->all();
 
       $File = File::where('id', $input['id'])->get();
 
-      return $File;
+      $filesInfo = array();
+
+      foreach ($File as $key => $file)
+      {
+        $tests = array();
+        $doneTests = array();
+        $results = array();
+        $todoTests = $this->getTodoTestsByFileId($file->id);
+        $DoneTests = $this->getDoneTestsByFileId($file->id);
+
+        foreach ($todoTests as $key => $test)
+        {
+          array_push($tests, array(
+            'id' => $test->id,
+            'name' => $test->name
+            )
+          );
+        }
+
+        foreach ($DoneTests as $key => $test)
+        {
+          array_push($doneTests, $test->name);
+          array_push($results, $test->results);
+        }
+
+        $strDoneTests = implode(", ", $doneTests);
+        $strResults = implode(", ", $results);
+
+        $File = array(
+          'id' => $file->id,
+          'number' => $file->number,
+          'first_name' => $file->first_name,
+          'second_name' => $file->second_name,
+          'first_lastname' => $file->first_lastname,
+          'second_lastname' => $file->second_lastname,
+          'birthdate' => $file->birthdate,
+          'age' => $file->age,
+          'sex' => $file->sex,
+          'dui' => $file->dui,
+          'nit' => $file->nit,
+          'phone_number' => $file->phone_number,
+          'second_phone_number' => $file->second_phone_number,
+          'responsible_name' => $file->responsible_name,
+          'responsible_phone_number' => $file->responsible_phone_number,
+          'address' => $file->address,
+          'city' => $file->city,
+          'state' => $file->state,
+          'general_doctor_id' => $file->general_doctor_id,
+          'specialist_doctor_id' => $file->specialist_doctor_id,
+          'allergies' => $file->allergies,
+          'symptoms' => $file->symptoms,
+          'diagnosis' => $file->diagnosis,
+          'treatment' => $file->treatment,
+          'done_tests' => $strDoneTests,
+          'results' => $strResults,
+          'tests' => $tests
+        );
+
+        array_push($filesInfo, $File);
+      }
+
+      return $filesInfo;
     }
 
     /**

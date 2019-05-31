@@ -16,7 +16,7 @@
               {{ link_to('/secretary-edit-file', $title = 'Consultar expediente', $attributes = ['class' => 'btn btn-info btn-lg btn-block', 'role' => 'button'])}}
               @endhasanyrole
 
-              @hasanyrole('doctor|specialist-doctor')
+              @hasanyrole('doctor|specialist-doctor|super-admin')
               {{ link_to('/doctor-edit-file', $title = 'Consultar expediente', $attributes = ['class' => 'btn btn-info btn-lg btn-block', 'role' => 'button'])}}
               @endhasanyrole
 
