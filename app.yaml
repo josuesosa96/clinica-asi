@@ -28,7 +28,7 @@ env_variables:
  DB_DATABASE: clinica
  DB_USERNAME: root
  DB_PASSWORD: clinicaasi
- DB_SOCKET: clinica-asi1:us-central1:clinica
+ DB_SOCKET: '/cloudsql/clinica-asi1:us-central1:clinica'
 
  QUEUE_DRIVER: database #in case you execute queued jobs
 
