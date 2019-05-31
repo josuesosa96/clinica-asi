@@ -297,6 +297,9 @@
                     <button type="button" id="save-file" class="btn btn-primary">Guardar expediente</button>
                   </div>
                   <div class="col text-center">
+                    <button type="button" id="create-report" class="btn btn-info">Generar reporte</button>
+                  </div>
+                  <div class="col text-center">
                     {{ link_to('/secretary-edit-file', $title = 'Consultar expediente', $attributes = ['class' => 'btn btn-success', 'role' => 'button'])}}
                   </div>
                 </div>
