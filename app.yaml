@@ -25,6 +25,7 @@ env_variables:
 # follow the part of the tutorial on setting up your SQL database
  DB_CONNECTION: mysql
  DB_HOST: localhost
+ DB_PORT: 3306
  DB_DATABASE: clinica
  DB_USERNAME: root
  DB_PASSWORD: clinicaasi
