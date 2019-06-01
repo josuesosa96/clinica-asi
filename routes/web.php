@@ -37,3 +37,7 @@ Route::post('/get-file', 'HomeSecretaryController@getFile')->name('getFile');
 
 Route::get('/add-roles/{user}', 'HomeSecretaryController@addPermissions')->name('addRole');
 Route::get('/get-roles/{user}', 'HomeSecretaryController@getUserRoles')->name('getRoles');
+
+
+Route::get('pdf_view', 'CustomerController@printPDF') ->name ('pdfview');
+Route::get('pdf_viewSEC', 'CustomerControllerSEC@printPDF') ->name ('pdfviewSEC');

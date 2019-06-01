@@ -414,6 +414,10 @@
                     <div class="col text-center">
                       {{ link_to('/menu', $title = 'Regresar', $attributes = ['class' => 'btn btn-success', 'role' => 'button'])}}
                     </div>
+
+                    <div class="col text-center">
+                      <button type="button" id="create-report" class="btn btn-info"><a href="{{route('pdfviewSEC')}}">Generar Reporte</a></button>
+                    </div>
                   </div>
                 </div>
               </div>

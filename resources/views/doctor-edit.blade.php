@@ -115,6 +115,12 @@
       $('.file-message').remove();
     });
 
+        //PRUEBAS
+
+
+
+      
+
     $('#update-file').click(function()
     {
       if ($('#file-id').val() == '')
@@ -192,7 +198,9 @@
           }
         );
       }
+
     });
+
   });
 </script>
 @endsection
@@ -373,7 +381,7 @@
                       <button type="button" id="update-file" class="btn btn-primary">Actualizar expediente</button>
                     </div>
                     <div class="col text-center">
-                      <button type="button" id="create-report" class="btn btn-info">Generar reporte</button>
+                      <button type="button" id="create-report" class="btn btn-info"><a href="{{route('pdfview')}}">Generar Reporte</a></button>
                     </div>
                     <div class="col text-center">
                       {{ link_to('/menu', $title = 'Regresar', $attributes = ['class' => 'btn btn-success', 'role' => 'button'])}}
