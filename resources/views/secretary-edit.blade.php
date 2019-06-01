@@ -9,6 +9,13 @@
 
   $(document).ready(function()
   {
+    $('#file-form-fieldset').on('shown.bs.collapse', function()
+    {
+      url = '/pdf_viewSEC/' + $('#file-id').val();
+
+      $('#pdf-form').attr('action', url);
+    });
+
     $('#files-grid').DataTable({
       select: true,
       language: {
@@ -78,11 +85,13 @@
               $('#specialist-doctor-id').val(json[0].specialist_doctor_id);
               $('#allergies').val(json[0].allergies);
               $('#file-id').val(json[0].id);
+              $('#file-id-pdf').val(json[0].id);
 
               $('#grid').collapse('hide');
             }
           });
         $('#file-form-fieldset').collapse('show');
+        $('#file-form-buttons').collapse('show');
       }
     });
 
@@ -167,6 +176,7 @@
 
               $('#grid').collapse('show');
               $('#file-form-fieldset').collapse('hide');
+              $('#file-form-buttons').collapse('hide');
 
               clearForm($('#file-form'));
             },
@@ -220,17 +230,6 @@
                 <h1>Pacientes Existente</h1>
               </div>
             </div>
-
-            {{-- <div class="row" >
-              <div class="col-md-12">
-                <div class="input-group mb-3">
-                  <input type="text" name="file-number" id="file-number" class="form-control" placeholder="Buscar expediente por número">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-info" id="search-file-number" type="submit">Buscar</button>
-                  </div>
-                </div>
-              </div>
-            </div> --}}
 
             <!--grid-->
             <div id="grid" class="collapse show">
@@ -407,22 +406,24 @@
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col text-center">
-                      <button type="button" id="update-file" class="btn btn-primary">Actualizar expediente</button>
-                    </div>
-                    <div class="col text-center">
-                      {{ link_to('/menu', $title = 'Regresar', $attributes = ['class' => 'btn btn-success', 'role' => 'button'])}}
-                    </div>
 
-                    <div class="col text-center">
-                      <button type="button" id="create-report" class="btn btn-info"><a href="{{route('pdfviewSEC')}}">Generar Reporte</a></button>
-                    </div>
-                  </div>
                 </div>
               </div>
             </fieldset>
             {!! Form::close() !!}
+            <div id="file-form-buttons" class="row collapse">
+              <div class="col text-center">
+                <button type="button" id="update-file" class="btn btn-primary">Actualizar expediente</button>
+              </div>
+              <div class="col text-center">
+                {{ link_to('/menu', $title = 'Regresar', $attributes = ['class' => 'btn btn-success', 'role' => 'button'])}}
+              </div>
+              <div class="col text-center">
+                <form id="pdf-form" class="" action="/pdf_viewSEC/" method="get">
+                  <button type="submit" class="btn btn-info">Generar reporte</button>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -6,9 +6,14 @@
 </head>
 
 <body>
-  <h1>{{ $heading}}</h1>
+  <center><h1>Paciente: {{ $file['first_name'] }} {{ $file['first_lastname'] }}</h1></center>
+  <center><h1>Número: {{ $file['number'] }}</h1></center>
   <div>
-     <p>{{$content}}</p>
+     <h2>Cita</h2>
+     <p>Fecha: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Hora:</p>
+  </div>
+  <div>
+    <h2>Doctor: </h2>
   </div>
 </body>
 

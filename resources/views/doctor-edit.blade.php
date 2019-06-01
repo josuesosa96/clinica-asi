@@ -9,6 +9,13 @@
 
   $(document).ready(function()
   {
+    $('#file-form-fieldset').on('shown.bs.collapse', function()
+    {
+      url = '/pdf_view/' + $('#file-id').val();
+
+      $('#pdf-form').attr('action', url);
+    });
+
     $('#files-grid').DataTable({
       select: true,
       language: {
@@ -100,6 +107,7 @@
             }
           });
         $('#file-form-fieldset').collapse('show');
+        $('#file-form-buttons').collapse('show');
       }
     });
 
@@ -119,7 +127,7 @@
 
 
 
-      
+
 
     $('#update-file').click(function()
     {
@@ -174,6 +182,7 @@
 
               $('#grid').collapse('show');
               $('#file-form-fieldset').collapse('hide');
+              $('#file-form-buttons').collapse('hide');
 
               clearForm($('#file-form'));
             },
@@ -376,7 +385,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="row">
+                  {{-- <div class="row">
                     <div class="col text-center">
                       <button type="button" id="update-file" class="btn btn-primary">Actualizar expediente</button>
                     </div>
@@ -386,11 +395,24 @@
                     <div class="col text-center">
                       {{ link_to('/menu', $title = 'Regresar', $attributes = ['class' => 'btn btn-success', 'role' => 'button'])}}
                     </div>
-                  </div>
+                  </div> --}}
                 </div>
               </div>
             </fieldset>
             {!! Form::close() !!}
+            <div id="file-form-buttons" class="row collapse">
+              <div class="col text-center">
+                <button type="button" id="update-file" class="btn btn-primary">Actualizar expediente</button>
+              </div>
+              <div class="col text-center">
+                {{ link_to('/menu', $title = 'Regresar', $attributes = ['class' => 'btn btn-success', 'role' => 'button'])}}
+              </div>
+              <div class="col text-center">
+                <form id="pdf-form" class="" action="/pdf_view/" method="get">
+                  <button type="submit" class="btn btn-info">Generar reporte</button>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>

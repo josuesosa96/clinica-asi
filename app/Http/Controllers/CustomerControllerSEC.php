@@ -1,28 +1,23 @@
 <?php
-// Our Controller 
+// Our Controller
 namespace App\Http\Controllers;
-  
-use Illuminate\Http\Request;
 
-// This is important to add here. 
+use Illuminate\Http\Request;
+use App\File;
 use PDF;
-  
+
 class CustomerControllerSEC extends Controller
 {
-    public function printPDF()
+    public function printPDF($id)
     {
-       // This  $data array will be passed to our PDF blade
+      $File = File::find($id)->toArray();
 
-       $data = [
+      $data = array();
 
-          'title' => 'First PDF for Medium',
+      $data['title'] = 'Expediente ' . $File['number'];
+      $data['file'] = $File;
 
-          'heading' => 'Hello from 99Points.info',
-
-          'content' => 'REPORTE SECRETARIA'        
-            ];
-        
-        $pdf = PDF::loadView('pdf_view', $data);  
-        return $pdf->download('medium.pdf');
+      $pdf = PDF::loadView('pdf_viewSEC', $data);
+      return $pdf->download('medium.pdf');
     }
 }

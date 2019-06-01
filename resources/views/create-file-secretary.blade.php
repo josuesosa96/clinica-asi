@@ -285,19 +285,10 @@
                       <textarea class="form-control" name="allergies" id="allergies" rows="2"></textarea>
                     </div>
                   </div>
-                  {{-- <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="symptoms">Sintomas</label>
-                      <textarea class="form-control" name="symptoms" id="symptoms" rows="2"></textarea>
-                    </div>
-                  </div> --}}
                 </div>
                 <div class="row">
                   <div class="col text-center">
                     <button type="button" id="save-file" class="btn btn-primary">Guardar expediente</button>
-                  </div>
-                  <div class="col text-center">
-                    <button type="button" id="create-report" class="btn btn-info">Generar reporte</button>
                   </div>
                   <div class="col text-center">
                     {{ link_to('/secretary-edit-file', $title = 'Consultar expediente', $attributes = ['class' => 'btn btn-success', 'role' => 'button'])}}
